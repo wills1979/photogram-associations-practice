@@ -21,4 +21,5 @@ class Comment < ApplicationRecord
   belongs_to(:commenter, class_name: "User", foreign_key: "author_id", primary_key: "id")
 
   # Comment#photo: returns a row from the photos table associated to this comment by the photo_id column
+  belongs_to(:photo, class_name: "Photo", foreign_key: "photo_id", primary_key: "id")
 end

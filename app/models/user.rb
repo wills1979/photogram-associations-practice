@@ -35,7 +35,7 @@ class User < ApplicationRecord
   has_many(:sent_follow_requests, class_name: "FollowRequest", foreign_key: "sender_id")
 
   # User#received_follow_requests: returns rows from the follow requests table associated to this user by the recipient_id column
-
+  has_many(:received_follow_requests, class_name: "FollowRequest", foreign_key: "recipient_id")
 
   ### Scoped direct associations
 
@@ -47,9 +47,10 @@ class User < ApplicationRecord
   ## Indirect associations
 
   # User#liked_photos: returns rows from the photos table associated to this user through its likes
+  has_many(:liked_photos, through: :likes, source: :photo)
 
   # User#commented_photos: returns rows from the photos table associated to this user through its comments
-
+  has_many(:commented_photos, through: :comments, source: :photo)
 
   ### Indirect associations built on scoped associations
 
